@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Untitled Document</title>
 </head>
-
+<body>
 <?php
 $mysqli = new mysqli("oniddb.cws.oregonstate.edu", "gunea-db", "5c7NIUQDT4UN1mvB", "gunea-db");
 if ($mysqli->connect_errno) {
@@ -25,6 +25,6 @@ if (!($stmt = $mysqli->prepare("INSERT INTO test(id) VALUES (?)"))) {
 
 ?>
 
-<body>
+
 </body>
 </html>
