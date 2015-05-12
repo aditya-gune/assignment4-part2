@@ -11,17 +11,33 @@ if ($mysqli->connect_errno) {
     echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
 }
 
-if (!($stmt = $mysqli->prepare("INSERT INTO test(id) VALUES (?)"))) {
+if (!$mysqli->query("DROP TABLE IF EXISTS movies") || !$mysqli->query("CREATE TABLE movies(
+					id MEDIUMINT NOT NULL AUTO_INCREMENT, 
+					name CHAR(255) NOT NULL UNIQUE, 
+					category CHAR(255), 
+					length INT, 
+					PRIMARY KEY (id))")) {
+    echo "Table creation failed: (" . $mysqli->errno . ") " . $mysqli->error;
+}
+addtoDB();
+function addtoDB(){
+	global $mysqli;
+$name = isset($_POST['name'])? $_POST['name']: '';
+$category = isset($_POST['category'])? $_POST['category']: '';
+$length = isset($_POST['length'])? $_POST['length']: '';
+
+if (!($stmt = $mysqli->prepare("INSERT INTO movies (name, category, length) VALUES ('".$name ."', '".$category."', '".$length."')"))) {
     echo "Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error;
 }
 
+if (!$stmt->bind_param('ssi', $name, $category, $length)) {
+    echo "Name Binding Failed: (" . $stmt->errno . ") " . $stmt->error;
+}
 
-
-
-
-
-
-
+if (!$stmt->execute()) {
+    echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+}
+}
 
 ?>
 
