@@ -35,6 +35,8 @@ echo "<th> Movie </th>";
 echo "<th> Category </th>";
 echo "<th> Length (Minutes) </th>";
 echo "<th> Rented? </th>";
+echo "<th> Delete? </th>";
+echo "<th> Check In/Out </th>";
 echo "<tbody>";
 while ($stmt->fetch()) {
 	
@@ -46,13 +48,31 @@ while ($stmt->fetch()) {
             echo "<td> Available </td>";
 			else
 			echo "<td> Rented </td>";
+			echo "<td> <form action = \"table.php?deleteName=$out_name\" method = \"GET\">
+			<button type = \"submit\" value=\"$out_name\" name = \"delete\"> Delete </button> </form> </td>";
+			echo "<td> <form action = \"table.php?checkOut=$out_name\" method = \"GET\">
+			<button type = \"submit\" value=\"$out_name\" name = \"checkout\"> Check Out </button> </form> </td>";
+			
+	if(isset($_GET['delete'])){
+		if (!($stmt = $mysqli->prepare("DELETE FROM movies WHERE name = 'delete'"))) {
+   			echo "Delete Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error;
+		}
 	
+		if (!$stmt->bind_result($out_name, $out_cat, $out_length, $out_rented)) {
+			echo "Binding output parameters failed: (" . $stmt->errno . ") " . $stmt->error;
+		}
+		if (!$stmt->execute()) {
+			echo "Delete Execute failed: (" . $mysqli->errno . ") " . $mysqli->error;
+		}
+			
+	}
             
 }
 echo "</tbody> </table>";
 }
-	
-?>
+
+?> 
+
 
 </body>
 </html>

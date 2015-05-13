@@ -19,6 +19,8 @@ $name = isset($_POST['name'])? $_POST['name']: '';
 $category = isset($_POST['category'])? $_POST['category']: '';
 $length = isset($_POST['length'])? $_POST['length']: '';
 
+if (!$_POST['name']) echo "Name cannot be blank!";
+
 if (!($stmt = $mysqli->prepare("INSERT INTO movies (name, category, length) VALUES ('".$name ."', '".$category."', '".$length."')"))) {
     echo "Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error;
 }
