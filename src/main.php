@@ -6,19 +6,12 @@
 </head>
 <body>
 <?php
+ini_set('display_errors', 'On');
 $mysqli = new mysqli("oniddb.cws.oregonstate.edu", "gunea-db", "5c7NIUQDT4UN1mvB", "gunea-db");
 if ($mysqli->connect_errno) {
     echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
 }
 
-if (!$mysqli->query("DROP TABLE IF EXISTS movies") || !$mysqli->query("CREATE TABLE movies(
-					id MEDIUMINT NOT NULL AUTO_INCREMENT, 
-					name CHAR(255) NOT NULL UNIQUE, 
-					category CHAR(255), 
-					length INT, 
-					PRIMARY KEY (id))")) {
-    echo "Table creation failed: (" . $mysqli->errno . ") " . $mysqli->error;
-}
 addtoDB();
 function addtoDB(){
 	global $mysqli;
@@ -40,6 +33,8 @@ if (!$stmt->execute()) {
 }
 
 ?>
+
+
 
 
 </body>
