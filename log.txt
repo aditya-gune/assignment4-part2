@@ -1,0 +1,23 @@
+Start: Tue, 12 May 2015 23:42:15 -0400
+END: Tue, 12 May 2015 21:03:49 -0400
+Tasks: delete
+
+Start: Tue, 12 May 2015 22:09:25 -0400
+END: Tue, 12 May 2015 21:03:49 -0400
+Tasks: removed create table query
+
+Start: Tue, 12 May 2015 18:35:00 -0400
+END: Tue, 12 May 2015 21:03:49 -0400
+Tasks: added display table
+
+Start: Mon, 11 May 2015 20:05:36 -0400
+END: Mon, 11 May 2015 23:24:19 -0400
+Tasks: INSERT INTO
+
+Start: Mon, 11 May 2015 19:59:51 -0400
+END: Mon, 11 May 2015 20:05:36 -0400
+Tasks: added html form
+
+Start: Mon, 11 May 2015 17:00:00 -0400
+END: Mon, 11 May 2015 19:59:51 -0400
+Tasks: moved file to src directory
